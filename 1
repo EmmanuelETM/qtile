@@ -142,33 +142,16 @@ for i in groups:
             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
             #     desc="move focused window to group {}".format(i.name)),
         ]
-    
     )
 
-
-
-
 layouts = [
-    layout.Columns( 
-            border_focus="#F1696a",
-            border_width=5,
-            margin=8
-                ),
-        
-    layout.Max(
-
-        ),
-
-    layout.MonadTall(
-            border_focus="F1696a",
-            border_width=5,
-            margin=8
-                ),
-
+    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
+    # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -188,80 +171,39 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.CurrentLayout(),
                 widget.GroupBox(
                     font="sans",
-                    fontsize=14,
+                    fontsize=12,
                     margn_y=3,
                     padding_x=5,
                     disable_drag=True,
-                    active="#7dcfff",
-                    inactive="#014D4E",
-                    this_current_screen_border="#1f2335",
+                    active="#2AC3DE",
+                    inactive="#7dcfff",
+                    this_current_screen_border="#1a1b26",
                     highlight_method="block",
                     urgent_alert_method="Block",
                     rounded=False,
                     highlight_color=["#0000FF", "#0000FF"],
                     urgent_border=["#FF0000", "#FF0000"]
                     ),
-                widget.TextBox("["),
-                widget.CurrentLayout(),
-                widget.TextBox(
-                    "]"
-                    ),
-                widget.TextBox(
-                    text="|",
-                    ),
-                #widget.Prompt(),
-                widget.WindowName(
-                    
-                    ),
-                widget.TextBox(
-                    text="|"
-                    ),
+                widget.Prompt(),
+                widget.WindowName(),
                 widget.Chord(
                     chords_colors={
                         "launch": ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox(
-                    text="Emmanuel Torres", 
-                    foreground="#FC7B7B"
-                    ),     
-
-                widget.TextBox(
-                    text="|"
-                    ),
-
+                widget.TextBox("Emmanuel Torres", name="etm"),            
+                widget.TextBox("|", name="separator"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
-                widget.CPU(),
-                widget.TextBox(
-                        text="|"
-                        ),
-                widget.Memory(),
-                widget.TextBox(
-                        text="|"
-                        ),
                 widget.Net(),
-                widget.TextBox(
-                        text="|",
-                        ),
-                
-                widget.Volume(),
-
-                widget.TextBox(
-                    text="|"
-                    ),
-
-                widget.Clock(
-                    format="%Y-%m-%d %a %I:%M %p"
-                    ),
-
-                widget.TextBox(
-                    "|"
-                    ),
+                widget.TextBox("|"),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.TextBox("|"),
                 widget.QuickExit(),
             ],
             24,
