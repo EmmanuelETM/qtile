@@ -211,7 +211,7 @@ screens = [
                 widget.TextBox(
                     text="|",
                     ),
-                #widget.Prompt(),
+                widget.Prompt(),
                 widget.WindowName(
                     
                     ),
